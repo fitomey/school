@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -129,8 +130,8 @@ void ft_putstr_non_printable(char *str)
 
 int main(void)
 {
-	char stst[9] = {'q','a','1','\n',30,16,20,1,'\0'};
+	char stst[9] = {'q','a','1','0','i','c','o','g','\0'};
 	char *pst = stst;
-	ft_putstr_non_printable(pst);
+	printf();
 	return 0;
 }

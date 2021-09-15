@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -96,41 +97,23 @@ void ft_putstr(char *str)
 }
 
 
-void ft_putstr_non_printable(char *str)
+int ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	char adrs[4] = {'0'};
-	char *padrs = adrs;
 	int i;
 	i = 0;
-	while (str[i] != '\0')
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && i + 1 != n)
 	{
-		if (str[i] < '!' || str[i] > '~')
-		{
-			padrs[0] = '\\';
-			padrs[1] = (str[i] / 16) + 48;
-			if (str[i] % 16 >= 10)
-			{
-				padrs[2] = str[i] % 16 + 87;
-			}
-			else
-			{
-				padrs[2] = str[i] % 16 + 48;
-			}
-			padrs[3] = '\0';
-			ft_putstr(padrs);
-		}
-		else
-		{
-			ft_putchar(str[i]);
-		}
 		i += 1;
 	}
+	return(s1[i] - s2[i]);
 }
 
 int main(void)
 {
-	char stst[9] = {'q','a','1','\n',30,16,20,1,'\0'};
-	char *pst = stst;
-	ft_putstr_non_printable(pst);
+	char st1[9] = {'q','a','1','0','i','c','o','g','\0'};
+	char *pst1 = st1;
+	char st2[9] = {'q','a','1','0','a','c','o','g','\0'};
+	char *pst2 = st2;
+	ft_putnbr(ft_strncmp(pst1,pst2,5));
 	return 0;
 }

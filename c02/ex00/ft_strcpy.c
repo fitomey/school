@@ -51,8 +51,6 @@ void ft_putnbr(int nb)
 		ft_putchar(n[f]+'0');
 		f += 1;
 	}
-	
-	
 }
 
 int ft_strlen(char *str)
@@ -89,14 +87,18 @@ void ft_putstr(char *str)
 	}
 }
 
+void unit_test(char *src, char *dest)
+{
+	ft_putstr(src);
+	write(STDOUT_FILENO, "\n", 1);
+	ft_putstr(ft_strcpy(dest, src));
+	write(STDOUT_FILENO, "\n", 1);
+}
 
 int main(void)
 {
 	char st[10] = {'1', '8', '8', '1', '1', '9', '1', '3', '1', '\0'};
-	char *s = st;
-	ft_putstr(s);
 	char dd[10] = {'0'};
-	char *pdd = dd;
-	ft_putstr(ft_strcpy(pdd, s));
+	unit_test(st, dd);
 	return 0;
 }

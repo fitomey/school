@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -96,41 +97,32 @@ void ft_putstr(char *str)
 }
 
 
-void ft_putstr_non_printable(char *str)
+char *ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	char adrs[4] = {'0'};
-	char *padrs = adrs;
 	int i;
 	i = 0;
-	while (str[i] != '\0')
+	while (dest[i] != '\0')
 	{
-		if (str[i] < '!' || str[i] > '~')
-		{
-			padrs[0] = '\\';
-			padrs[1] = (str[i] / 16) + 48;
-			if (str[i] % 16 >= 10)
-			{
-				padrs[2] = str[i] % 16 + 87;
-			}
-			else
-			{
-				padrs[2] = str[i] % 16 + 48;
-			}
-			padrs[3] = '\0';
-			ft_putstr(padrs);
-		}
-		else
-		{
-			ft_putchar(str[i]);
-		}
 		i += 1;
 	}
+	int r;
+	r = i;
+	i = 0;
+	while (i < nb)
+	{
+		dest[i + r] = src[i];
+		i += 1;
+	}
+	dest[i + r] = '\0';
+	return(dest);
 }
 
 int main(void)
 {
-	char stst[9] = {'q','a','1','\n',30,16,20,1,'\0'};
-	char *pst = stst;
-	ft_putstr_non_printable(pst);
+	char st1[7] = {'q','a','1','\0','0','0','0'};
+	char *pst1 = st1;
+	char st2[6] = {'a','1','0','a','c','\0'};
+	char *pst2 = st2;
+	ft_putstr(ft_strncat(pst1,pst2,3));
 	return 0;
 }
