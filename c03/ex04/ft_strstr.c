@@ -1,5 +1,7 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+
 
 void	ft_putchar(char c)
 {
@@ -64,7 +66,7 @@ int ft_strlen(char *str)
 	{
 		i += 1;
 	}
-	return(i + 1);
+	return(i);
 }
 
 unsigned int ft_strlcpy(char *dest, char *src, unsigned int size)
@@ -96,32 +98,59 @@ void ft_putstr(char *str)
 	}
 }
 
+
 char *ft_strstr(char *str, char *to_find)
 {
-	int i;
-	i = 0;
-	while (dest[i] != '\0')
+	int k = 0;
+	int i = 0;
+	int flag = 0;
+	if (to_find[0] == '\0')
 	{
-		i += 1;
+		return(str);
 	}
-	int r;
-	r = i;
-	i = 0;
-	while (i < nb)
+	else
 	{
-		dest[i + r] = src[i];
-		i += 1;
+		while (str[i] != '\0' && flag == 0)
+		{
+			k = 0;
+			while (str[i + k] != '\0' && to_find[k] != '\0' && str[i + k] == to_find[k])
+			{
+				k += 1;
+			}
+			if (to_find[k] == '\0')
+			{
+				flag = 1;
+			}
+			i += 1;
+		}
+		if (flag == 1)
+		{
+			char *pstr = str + i - 1;
+			return(pstr);
+		}
+		else
+		{
+			return(NULL);
+		}
+		
 	}
-	dest[i + r] = '\0';
-	return(dest);
 }
 
 int main(void)
 {
-	char st1[7] = {'q','a','1','\0','0','0','0'};
-	char *pst1 = st1;
-	char st2[6] = {'a','1','0','a','c','\0'};
-	char *pst2 = st2;
-	ft_putstr(ft_strncat(pst1,pst2,3));
+	// char st1[] = "qa100000676767";
+	// char st2[] = "1";
+	// char st1[] = "qa100000676767";
+	// char st2[] = "qa100000676767";
+	// char st1[] = "qa100000676767";
+	// char st2[] = "";
+	// char st1[] = "qa100000676767";
+	// char st2[] = "qqqqqqqqqqqqqqqqqqq";
+	// char st1[] = "qa1000006767678";
+	// char st2[] = "7";
+	char st1[] = "";
+	char st2[] = "";
+	printf("%s", strstr(st1,st2));
+	printf("%s", ft_strstr(st1,st2));
 	return 0;
 }
